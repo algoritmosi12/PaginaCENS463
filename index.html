@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CENS Nº463 "Héroes de Malvinas" - Emprendimientos Estudiantiles</title>
+    <style>
+        :root {
+            --color-primario: #1a3c6e; /* Azul oscuro */
+            --color-secundario: #d4af37; /* Dorado */
+            --color-terciario: #8b0000; /* Rojo oscuro */
+            --color-fondo: #f5f5f5;
+            --color-texto: #333333;
+            --color-blanco: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--color-primario) 0%, #2a4c7e 100%);
+            color: var(--color-blanco);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-blanco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 5px;
+            color: var(--color-secundario);
+            font-weight: 500;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 60, 110, 0.8), rgba(26, 60, 110, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--color-blanco);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-secundario);
+            color: var(--color-primario);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            background-color: #e6c44c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Emprendimientos Section */
+        .emprendimientos {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--color-primario);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-secundario);
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-btn {
+            background-color: var(--color-blanco);
+            border: 2px solid var(--color-primario);
+            color: var(--color-primario);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+        
+        .flyers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .flyer {
+            background-color: var(--color-blanco);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .flyer:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .flyer-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .flyer-content {
+            padding: 20px;
+        }
+        
+        .flyer-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--color-primario);
+        }
+        
+        .flyer-text {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .flyer-contact {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-secundario);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--color-primario);
+        }
+        
+        .contact-info {
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--color-secundario);
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--color-secundario);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--color-secundario);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .flyers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 50px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .flyers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <!-- Aquí iría el logo real -->
+                        <span style="color: var(--color-primario); font-weight: bold;">CENS</span>
+                    </div>
+                    <div>
+                        <div class="logo-text">CENS Nº463</div>
+                        <div class="subtitle">"Héroes de Malvinas" - La Plata</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Emprendimientos Estudiantiles</h1>
+            <p>Descubre los proyectos y emprendimientos creados por nuestros estudiantes. Apoya el talento joven de nuestra comunidad educativa.</p>
+            <a href="#emprendimientos" class="cta-button">Ver Emprendimientos</a>
+        </div>
+    </section>
+
+    <!-- Emprendimientos Section -->
+    <section id="emprendimientos" class="emprendimientos">
+        <div class="container">
+            <h2 class="section-title">Nuestros Emprendimientos</h2>
+            
+            <div class="filters">
+                <button class="filter-btn active">Todos</button>
+                <button class="filter-btn">Gastronomía</button>
+                <button class="filter-btn">Artesanías</button>
+                <button class="filter-btn">Servicios</button>
+                <button class="filter-btn">Tecnología</button>
+            </div>
+            
+            <div class="flyers-grid">
+                <!-- Flyer 1 -->
+                <div class="flyer">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Delicias Caseras" class="flyer-img">
+                    <div class="flyer-content">
+                        <h3 class="flyer-title">Delicias Caseras</h3>
+                        <p class="flyer-text">Tortas, pasteles y postres artesanales elaborados con ingredientes de primera calidad. Pedidos con 48hs de anticipación.</p>
+                        <div class="flyer-contact">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-info">
+                                <strong>Contacto:</strong> María González<br>
+                                <strong>Tel:</strong> 221-555-1234<br>
+                                <strong>Instagram:</strong> @deliciascaseras_lp
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flyer 2 -->
+                <div class="flyer">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Arte en Cuero" class="flyer-img">
+                    <div class="flyer-content">
+                        <h3 class="flyer-title">Arte en Cuero</h3>
+                        <p class="flyer-text">Productos artesanales en cuero: billeteras, cinturones, carteras y más. Hechos a mano con diseños únicos.</p>
+                        <div class="flyer-contact">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-info">
+                                <strong>Contacto:</strong> Carlos Rodríguez<br>
+                                <strong>Tel:</strong> 221-555-5678<br>
+                                <strong>Facebook:</strong> ArteEnCueroLP
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flyer 3 -->
+                <div class="flyer">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tech Solutions" class="flyer-img">
+                    <div class="flyer-content">
+                        <h3 class="flyer-title">Tech Solutions</h3>
+                        <p class="flyer-text">Servicios de reparación de computadoras, instalación de software y asesoramiento tecnológico para hogares y pequeñas empresas.</p>
+                        <div class="flyer-contact">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-info">
+                                <strong>Contacto:</strong> Ana Martínez<br>
+                                <strong>Tel:</strong> 221-555-9012<br>
+                                <strong>Email:</strong> techsolutions.lp@gmail.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flyer 4 -->
+                <div class="flyer">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mercado Saludable" class="flyer-img">
+                    <div class="flyer-content">
+                        <h3 class="flyer-title">Mercado Saludable</h3>
+                        <p class="flyer-text">Productos orgánicos y naturales: frutas, verduras, hierbas y especias. Entregas a domicilio en La Plata.</p>
+                        <div class="flyer-contact">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-info">
+                                <strong>Contacto:</strong> Laura Fernández<br>
+                                <strong>Tel:</strong> 221-555-3456<br>
+                                <strong>WhatsApp:</strong> 221-555-7890
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flyer 5 -->
+                <div class="flyer">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diseño Gráfico" class="flyer-img">
+                    <div class="flyer-content">
+                        <h3 class="flyer-title">Diseño Gráfico LP</h3>
+                        <p class="flyer-text">Servicios de diseño: logos, flyers, tarjetas personales y material para redes sociales. Presupuestos sin cargo.</p>
+                        <div class="flyer-contact">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-info">
+                                <strong>Contacto:</strong> Pablo Sánchez<br>
+                                <strong>Tel:</strong> 221-555-6789<br>
+                                <strong>Portfolio:</strong> behance.net/designlp
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flyer 6 -->
+                <div class="flyer">
+                    <img src="https://images.unsplash.com/photo-1589984662646-e7b2e4962f18?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Clases de Guitarra" class="flyer-img">
+                    <div class="flyer-content">
+                        <h3 class="flyer-title">Clases de Guitarra</h3>
+                        <p class="flyer-text">Clases personalizadas de guitarra para todos los niveles. Método adaptado a tus gustos musicales. Clases a domicilio.</p>
+                        <div class="flyer-contact">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-info">
+                                <strong>Contacto:</strong> Diego López<br>
+                                <strong>Tel:</strong> 221-555-2345<br>
+                                <strong>Instagram:</strong> @guitarralp
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CENS Nº463</h3>
+                    <p>"Héroes de Malvinas" - La Plata</p>
+                    <p>Educación para jóvenes y adultos</p>
+                    <p>Promoviendo el emprendedorismo</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>Dirección: Calle 123, La Plata</p>
+                    <p>Teléfono: 221-123-4567</p>
+                    <p>Email: info@cens463.edu.ar</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 CENS Nº463 "Héroes de Malvinas" - Todos los derechos reservados
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filtrado de emprendimientos
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Agregar clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    // Aquí iría la lógica para filtrar los emprendimientos
+                    // Por simplicidad, no implementamos el filtrado real en este ejemplo
+                });
+            });
+        });
+    </script>
+</body>
+</html>
